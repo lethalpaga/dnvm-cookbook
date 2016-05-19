@@ -9,7 +9,7 @@ when 'windows'
 end
 
 dnvm_install 'dnvm' do
-  user node['dnvm']['user']
+  username node['dnvm']['user']
   installer_url installer_url
 end
 

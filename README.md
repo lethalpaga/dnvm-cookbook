@@ -16,7 +16,7 @@ Alternatively you can use the [dnvm_install] resource (see below)
 Installs DNVM for a given user. Usage:
 ```ruby
 dnvm_resource 'dnvm' do
-  user 'my_user' # Will default to the resource name
+  username 'my_user' # Will default to the resource name
   installer_url 'https://someurl.example.com/dnvm_install.sh' # Optional
 end
 ```

@@ -7,7 +7,8 @@ when 'windows'
   installer_url = node['dnvm']['installer_url']['windows']
 end
 
-property :user, String, name_property: true
+property :username, String, name_property: true
+property :groupname, String, default: nil
 property :installer_url, String, default: installer_url
 
 default_action :install
@@ -18,7 +19,8 @@ action :install do
   remote_file 'installer' do
     source installer_url
     path installer_path
-    user user
+    user username
+    group groupname || username
     mode '744'
   end
 
@@ -26,7 +28,8 @@ action :install do
   when 'debian', 'rhel'
     execute 'install_dnvm' do
       command "bash -c #{installer_path}"
-      user user
+      user username
+      group groupname || username
       creates ::File.join(Dir.home, '.dnx', 'dnvm', 'dnvm.sh')
     end
   when 'windows'
